@@ -86,6 +86,15 @@ class FriendCell: BaseCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    let hasSeenProfileImage : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 8
+        imageView.layer.masksToBounds = true
+        imageView.image = #imageLiteral(resourceName: "zuckprofile")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
     
     
@@ -97,9 +106,8 @@ class FriendCell: BaseCell {
         addSubview(messageLabel)
         addSubview(timeLabel)
         addSubview(saparatorView)
+        addSubview(hasSeenProfileImage)
         addConstraintForViews()
-        
-        
     }
     func addConstraintForViews() {
         // constraint for ProfileImageView
@@ -114,6 +122,8 @@ class FriendCell: BaseCell {
         NSLayoutConstraint.activate([messageLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor , constant : 0), messageLabel.topAnchor.constraint(equalTo: containerView.centerYAnchor), messageLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor), messageLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)])
         // constraint for TimeLabel
         NSLayoutConstraint.activate([timeLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor , constant : 0), timeLabel.bottomAnchor.constraint(equalTo: containerView.centerYAnchor), timeLabel.widthAnchor.constraint(equalToConstant: 80), timeLabel.heightAnchor.constraint(equalToConstant: 20)])
+        // constraint for hasSeenProfileImage
+        NSLayoutConstraint.activate([hasSeenProfileImage.rightAnchor.constraint(equalTo: containerView.rightAnchor),hasSeenProfileImage.bottomAnchor.constraint(equalTo: bottomAnchor , constant: -8),hasSeenProfileImage.widthAnchor.constraint(equalToConstant: 16), hasSeenProfileImage.heightAnchor.constraint(equalToConstant: 16)])
     }
         
 }
